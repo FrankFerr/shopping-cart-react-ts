@@ -2,26 +2,24 @@ import type { JSX } from "react";
 import type { RatingStarProps } from "./RatingStarProps"
 import { BsStar, BsStarFill, BsStarHalf} from "react-icons/bs";
 
-
-    // <BsStar size={14}></BsStar>,
-    // <BsStarFill size={14}></BsStarFill>,
-    // <BsStarHalf size={14}></BsStarHalf>
-
-function RatingStar({ rate }: RatingStarProps){
+function RatingStar({ rate, star = 5 }: RatingStarProps){
     const icons: JSX.Element[] = []
 
-    const rateFloor = Math.floor(rate)
-    const rateDecimal = rate - rateFloor
-    let firstHalf: boolean = true
-    console.log("rateFloor: ", rateFloor)
-    console.log("rateDecimal: ", rateDecimal)
-    for(let i = 1; i <= 5; i++){
+    const rateFloor = Math.trunc(rate)
+    const rateDecimal = Math.round((rate - rateFloor) * 10) / 10
+    let firstTimeDecimal: boolean = true
+
+    for(let i = 1; i <= star; i++){
         if(i <= rateFloor){
-            icons.push(<BsStarFill/>)
+            icons.push(<BsStarFill color="rgb(245, 245, 61)"/>)
         }
-        else if(0.2 < rateDecimal && rateDecimal < 0.8 && firstHalf){
-            icons.push(<BsStarHalf/>)
-            firstHalf = false
+        else if(0.2 < rateDecimal && rateDecimal < 0.8 && firstTimeDecimal){
+            icons.push(<BsStarHalf color="rgb(245, 245, 61)"/>)
+            firstTimeDecimal = false
+        }
+        else if(0.8 <= rateDecimal && firstTimeDecimal){
+            icons.push(<BsStarFill color="rgb(245, 245, 61)"/>)
+            firstTimeDecimal = false
         }
         else{
             icons.push(<BsStar/>)

@@ -1,3 +1,4 @@
 export interface RatingStarProps{
-    rate: number
+    rate: number,
+    star: number
 }
