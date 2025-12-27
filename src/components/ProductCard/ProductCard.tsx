@@ -4,8 +4,8 @@ import { BsCartPlusFill } from "react-icons/bs";
 
 function ProductCard({ product }: ProductCardProps){
     return (
-        <div className="w-52 bg-zinc-900 border-2 border-white">
-            <img className="p-4 bg-[rgba(85,85,85,0.5)]" src={product.image} alt={product.title}></img>
+        <div className="w-60 bg-zinc-900 border-2 border-white">
+            <img className="w-full h-64 object-contain p-4 bg-[rgba(85,85,85,0.5)]" src={product.image} alt={product.title}></img>
             <div className="p-2">
                 <h1 className="text-lg font-medium text-center mb-2">{product.title}</h1>
                 <hr className="mb-2"/>

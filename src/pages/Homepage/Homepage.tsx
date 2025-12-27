@@ -1,26 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "../../components/Navbar/Navbar"
 import ProductCard from "../../components/ProductCard/ProductCard";
-import type { Product } from "../../dto/Product";
+import { GetAllProducts } from "../../utility/FakeStoreApi";
 
 function Homepage(){
-    const prod: Product = {
-        "id": 1,
-        "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        "price": 109.95,
-        "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        "category": "men's clothing",
-        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-        "rating": {
-            "rate": 3.9,
-            "count": 120
-        }
-    }
+    const { data } = useQuery({
+        queryKey: ["products"],
+        queryFn: GetAllProducts
+    })
 
     return (
         <>
             <Navbar></Navbar>
-            <div className="w-full">
-                <ProductCard product={prod} />
+            <div className="w-3/4 grid grid-cols-5 gap-y-5 mt-5 bg-amber-200">
+                {data?.map((prod) => <ProductCard key={prod.id} product={prod} />)}
             </div>
         </>
     )
