@@ -14,10 +14,23 @@ const cartSlice = createSlice({
             state = state.filter((prod) => prod.id !== action.payload)
         },
         incrementQta: (state, action: PayloadAction<number>) => {
-            state = state.map((prod) => {
-                if(prod.id === action.payload)
+            for(const prod of state){
+                if(prod.id === action.payload){
                     prod.qta++
-            })
+                    break
+                }
+            }
+        },
+        decrementQta: (state, action: PayloadAction<number>) => {
+            for(const prod of state){
+                if(prod.id === action.payload){
+                    prod.qta--
+                    break
+                }
+            }
         }
     }
 })
+
+export const { addProduct, deleteProduct, incrementQta, decrementQta } = cartSlice.actions
+export default cartSlice.reducer
