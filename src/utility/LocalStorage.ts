@@ -1,6 +1,5 @@
-import type { ProductCart } from "../dto/ProductCart";
 
-export function saveCartState(key: string, value: ProductCart[]){
+export function saveState<T>(key: string, value: T){
     try{
         const serializedState = JSON.stringify(value)
         localStorage.setItem(key, serializedState)
@@ -10,7 +9,7 @@ export function saveCartState(key: string, value: ProductCart[]){
     }
 }
 
-export function loadCartState(key: string): ProductCart[] | undefined{
+export function loadState<T>(key: string): T | undefined{
     try{
         const serializedState = localStorage.getItem(key)
 
@@ -18,7 +17,7 @@ export function loadCartState(key: string): ProductCart[] | undefined{
             return undefined
         }
 
-        return JSON.parse(serializedState)
+        return JSON.parse(serializedState) as T
     }
     catch(err){
         console.log("Errore durante il caricamento del carrello -> ", err)
