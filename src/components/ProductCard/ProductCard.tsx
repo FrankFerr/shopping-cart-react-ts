@@ -10,7 +10,8 @@ function ProductCard({ product, onAddCart }: ProductCardProps){
             image: product.image,
             price: product.price,
             title: product.title,
-            qta: 1
+            qta: 1,
+            category: product.category
         }
 
         onAddCart(prod)

@@ -4,4 +4,5 @@ export interface ProductCart{
     title: string
     price: number
     qta: number
+    category: string
 }

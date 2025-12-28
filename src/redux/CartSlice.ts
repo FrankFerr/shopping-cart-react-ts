@@ -11,6 +11,7 @@ const cartSlice = createSlice({
             state.push(action.payload)
         },
         deleteProduct: (state, action: PayloadAction<number>) => {
+            console.log(state.filter((prod) => prod.id !== action.payload))
             state = state.filter((prod) => prod.id !== action.payload)
         },
         incrementQta: (state, action: PayloadAction<number>) => {

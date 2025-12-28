@@ -10,7 +10,7 @@ function Cart(){
     return (
         <>
             <Navbar></Navbar>
-            <div className="w-full h-full bg-amber-200 flex flex-row place-content-center">
+            <div className="w-screen h-full flex flex-col items-center mt-5">
                 {productsCart.map((prodCart) => <ProductCartCard key={prodCart.id} productCart={prodCart} />)}
             </div>
         </>
