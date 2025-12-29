@@ -11,7 +11,7 @@ function Cart(){
     return (
         <>
             <Navbar></Navbar>
-            <div className="mt-5 flex justify-center gap-6">
+            <div className="mt-20 flex justify-center gap-6">
                 {
                     productsCart.length === 0 ?
                     emptyCart :

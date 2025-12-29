@@ -25,7 +25,7 @@ function ProductCard({ product, onAddCart }: ProductCardProps){
                 <hr className="mb-2"/>
                 <p className="text-sm text-[rgba(220,220,220,0.85)] flex items-center gap-2 mb-2">{product.rating.rate} <RatingStar rate={product.rating.rate} star={5} /> ({product.rating.count})</p>
                 <p className="text-sm text-blue-400 mb-2">{product.category}</p>
-                <p className="text-2xl font-medium mb-2">{product.price.toString().replace('.', ',')}€</p>
+                <p className="text-2xl font-medium mb-2">{product.price.toFixed(2).replace('.', ',')}€</p>
                 <button 
                     className="flex items-center gap-2 p-2 my-3 mx-auto rounded-xl text-sm bg-amber-500 text-black cursor-pointer hover:bg-[rgba(219,132,0,1)]"
                     onClick={addToCart}
