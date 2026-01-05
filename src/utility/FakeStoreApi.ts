@@ -20,6 +20,26 @@ export async function GetAllProducts(): Promise<Product[]> {
     }
 }
 
+export async function GetProductsByCategory(category: string): Promise<Product[]> {
+    try{
+        const endpoint = Endpoints.FakeStore.categoryProducts.replace("{category}", category)
+        const response = await fetch(Endpoints.FakeStore.baseUrl + endpoint)
+
+        if(!response.ok){
+            console.log(response)
+            throw new Error("Errore durante il caricamento dei prodotti")
+        }
+
+        const data = await response.json()
+
+        return data
+    }
+    catch(err){
+        console.log(err)
+        throw new Error("Errore durante il caricamento dei prodotti")
+    }
+}
+
 export async function GetAllCategories(): Promise<string[]> {
     try{
         const response = await fetch(Endpoints.FakeStore.baseUrl + Endpoints.FakeStore.categories)
