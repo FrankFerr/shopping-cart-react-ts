@@ -6,7 +6,7 @@ import ProductCartCard from "../../components/ProductCartCard/ProductCartCard"
 
 function Cart(){
     const productsCart: ProductCart[] = useSelector((state: RootState) => state.cart)
-    const emptyCart = <h1 className="text-white text-3xl font-bold">Il Carrello è vuoto</h1>
+    const emptyCart = <h1 className="text-white text-3xl font-bold">The cart is empty</h1>
 
     return (
         <>

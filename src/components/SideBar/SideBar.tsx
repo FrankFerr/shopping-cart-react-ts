@@ -41,20 +41,20 @@ function SideBar({ onChangeFilter }: SideBarProps){
     return (
         <div className="w-64 h-[calc(100vh-4rem)] bg-orange-700 fixed left-0 top-16">
             <form className="ml-5 mt-1" onSubmit={handleSubmit}>
-                <h1 className="text-xl font-medium ml-2 mt-3">Categories</h1>
-                <ul>
+                <h1 className="text-xl font-medium mt-3">Categories</h1>
+                <ul className="ml-3">
                     {/* {categories.map((cat) => <li><button className="hover:underline hover:text-amber-600 hover:cursor-pointer">{cat}</button></li>)} */}
-                    <li><input type="radio" name="category" value={"all"} defaultChecked/><label className="pl-2">Tutti</label></li>
+                    <li><input type="radio" name="category" value={"all"} defaultChecked/><label className="pl-2">All</label></li>
                     {categories.map((cat) => <li key={cat}><input type="radio" name="category" value={cat} /><label className="pl-2">{cat}</label></li>)}
                 </ul>
 
-                <h1 className="text-xl font-medium ml-2 mt-3">Range di prezzo</h1>
-                <ul>
-                    <li><input type="radio" name="rangePrice" value={"-1"} defaultChecked/><label className="pl-2">Tutti</label></li>
+                <h1 className="text-xl font-medium mt-3">Price range</h1>
+                <ul className="ml-3">
+                    <li><input type="radio" name="rangePrice" value={"-1"} defaultChecked/><label className="pl-2">All</label></li>
                     {priceRange.map((range) => <li key={range}><input type="radio" name="rangePrice" value={range} /><label className="pl-2">{range}</label></li>)}
                 </ul>
 
-                <button type="submit" className="fixed bottom-4 left-4 px-4 py-2 rounded-lg bg-amber-500 text-black">Applica filtri</button>
+                <button type="submit" className="fixed bottom-4 left-4 px-4 py-2 rounded-lg bg-amber-500 text-black">Apply filter</button>
             </form>
         </div>
     )

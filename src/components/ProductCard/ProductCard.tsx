@@ -29,7 +29,7 @@ function ProductCard({ product, onAddCart }: ProductCardProps){
                 <button 
                     className="flex items-center gap-2 p-2 my-3 mx-auto rounded-xl text-sm bg-amber-500 text-black cursor-pointer hover:bg-[rgba(219,132,0,1)]"
                     onClick={addToCart}
-                ><BsCartPlusFill /> Aggiungi al carrello</button>
+                ><BsCartPlusFill /> Add to cart</button>
             </div>
         </div>
     )
