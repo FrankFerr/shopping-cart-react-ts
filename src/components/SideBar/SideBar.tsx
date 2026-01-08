@@ -25,8 +25,9 @@ function SideBar({ onChangeFilter }: SideBarProps){
 
         const filter: PartialSideBarFilter = {}
 
-        const category = formData.get("category") as string
-        if(category !== "all")
+        const category = formData.get("category") as string | null
+
+        if(category !== "all" && category !== null)
             filter.category = category
 
         const rangePrice = formData.get("rangePrice") as string
@@ -43,12 +44,16 @@ function SideBar({ onChangeFilter }: SideBarProps){
     return (
         <div className="w-64 h-[calc(100vh-4rem)] bg-orange-700 fixed left-0 top-16">
             <form className="ml-5 mt-1" onSubmit={handleSubmit}>
-                <h1 className="text-xl font-medium mt-3">Categories</h1>
-                <ul className="ml-3">
-                    {/* {categories.map((cat) => <li><button className="hover:underline hover:text-amber-600 hover:cursor-pointer">{cat}</button></li>)} */}
-                    <li><input type="radio" name="category" value={"all"} defaultChecked/><label className="pl-2">All</label></li>
-                    {categories.map((cat) => <li key={cat}><input type="radio" name="category" value={cat} /><label className="pl-2">{cat}</label></li>)}
-                </ul>
+                {
+                    categories.length > 0 ?
+                    <>
+                    <h1 className="text-xl font-medium mt-3">Categories</h1>
+                    <ul className="ml-3">
+                        <li><input type="radio" name="category" value={"all"} defaultChecked/><label className="pl-2">All</label></li>
+                        {categories.map((cat) => <li key={cat}><input type="radio" name="category" value={cat} /><label className="pl-2">{cat}</label></li>)}
+                    </ul>
+                    </> : ""
+                }
 
                 <h1 className="text-xl font-medium mt-3">Price range</h1>
                 <ul className="ml-3">

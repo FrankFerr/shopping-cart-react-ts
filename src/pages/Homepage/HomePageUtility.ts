@@ -3,7 +3,7 @@ import type { Product } from "../../dto/Product";
 import { GetAllProducts, GetProductsByCategory } from "../../utility/FakeStoreApi";
 
 export async function fetchProducts(filter: PartialSideBarFilter): Promise<Product[]>{
-    console.log("eseguita la query")
+
     let products: Product[] = []
 
     try{
