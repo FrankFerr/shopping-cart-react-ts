@@ -4,10 +4,8 @@ import { GetAllProducts, GetProductsByCategory } from "../../utility/FakeStoreAp
 
 export async function fetchProducts(filter: PartialSideBarFilter): Promise<Product[]>{
 
-    let products: Product[] = []
-
     try{
-        products = filter.category ? 
+        let products: Product[] = filter.category ? 
                     await GetProductsByCategory(filter.category) :
                     await GetAllProducts() 
 
@@ -19,6 +17,7 @@ export async function fetchProducts(filter: PartialSideBarFilter): Promise<Produ
     }
     catch(err){
         console.log(err)
-        return products
+
+        throw err
     }
 }
