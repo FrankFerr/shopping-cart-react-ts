@@ -1,5 +1,5 @@
-import type { SideBarFilter } from "./SideBarFilter";
+import type { PartialSideBarFilter } from "./SideBarFilter";
 
 export interface SideBarProps{
-    onChangeFilter: (filter: SideBarFilter) => void
+    onChangeFilter: (filter: PartialSideBarFilter) => void
 }

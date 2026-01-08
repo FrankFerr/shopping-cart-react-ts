@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/CartSlice";
 import type { ProductCart } from "../../dto/ProductCart";
 import SideBar from "../../components/SideBar/SideBar";
-import { SideBarFilter } from "../../components/SideBar/SideBarFilter";
+import { type PartialSideBarFilter } from "../../components/SideBar/SideBarFilter";
 import { useState } from "react";
 import { fetchProducts } from "./HomePageUtility";
 
 function Homepage(){
-    const [sideBarFilter, setSideBarFilter] = useState<SideBarFilter>(new SideBarFilter())
+    const [sideBarFilter, setSideBarFilter] = useState<PartialSideBarFilter>({})
     const { data } = useQuery({
         queryFn: () => fetchProducts(sideBarFilter),
         queryKey: ["products", { sideBarFilter }],
@@ -22,7 +22,7 @@ function Homepage(){
         dispatch(addProduct(prod))
     }
 
-    const handleChangeFilter = (filter: SideBarFilter) => {
+    const handleChangeFilter = (filter: PartialSideBarFilter) => {
         setSideBarFilter(filter)
     }
 

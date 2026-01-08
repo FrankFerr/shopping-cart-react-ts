@@ -1,5 +1,7 @@
-export class SideBarFilter{
-    category: string | null = null
-    priceRangeMax: number | null = null
-    priceRangeMin: number | null = null
+export interface SideBarFilter{
+    category: string
+    priceRangeMax: number
+    priceRangeMin: number
 }
+
+export type PartialSideBarFilter = Partial<SideBarFilter>

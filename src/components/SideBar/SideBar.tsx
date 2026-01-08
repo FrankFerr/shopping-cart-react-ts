@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { GetAllCategories } from "../../utility/FakeStoreApi"
 import type { SideBarProps } from "./SideBarProps"
-import { SideBarFilter } from "./SideBarFilter"
+import { type PartialSideBarFilter } from "./SideBarFilter"
 
 function SideBar({ onChangeFilter }: SideBarProps){
     const priceRange: string[] = [
@@ -23,13 +23,15 @@ function SideBar({ onChangeFilter }: SideBarProps){
         
         const formData = new FormData(event.currentTarget)
 
-        const filter = new SideBarFilter()
-        filter.category = formData.get("category") as string | null
-        filter.category = filter.category === "all" ? null : filter.category
+        const filter: PartialSideBarFilter = {}
 
-        const rangePrice = formData.get("rangePrice") as string | null
-        if(rangePrice !== null && rangePrice !== "-1"){
-            const prices = rangePrice.split("-")
+        const category = formData.get("category") as string
+        if(category !== "all")
+            filter.category = category
+
+        const rangePrice = formData.get("rangePrice") as string
+        if(rangePrice !== "-1"){
+            const prices: string[] = rangePrice.split("-")
 
             filter.priceRangeMin = Number(prices[0])
             filter.priceRangeMax = Number(prices[1])
