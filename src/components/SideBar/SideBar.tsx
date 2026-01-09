@@ -4,7 +4,6 @@ import type { SideBarProps } from "./SideBarProps"
 import { type PartialSideBarFilter } from "./SideBarFilter"
 
 function SideBar({ onChangeFilter }: SideBarProps){
-    console.log("SideBar rendered")
     const priceRange: string[] = [
         "0-50",
         "50-100",

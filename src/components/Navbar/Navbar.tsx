@@ -1,9 +1,11 @@
+import { memo } from "react"
 import { NavLink } from "react-router-dom"
 
 const isActiveClass = "h-full font-bold bg-[rgba(54,54,54,0.8)] hover:bg-[rgba(54,54,54,0.8)]"
 const normalClass = "h-full hover:bg-[rgba(54,54,54,0.8)]"
 
 function Navbar(){
+
     return (
         <nav className="w-screen h-16 bg-orange-800 flex items-center fixed top-0">
             <div className="w-1/2 text-left">
@@ -23,4 +25,4 @@ function Navbar(){
     )
 }
 
-export default Navbar
+export default memo(Navbar)
