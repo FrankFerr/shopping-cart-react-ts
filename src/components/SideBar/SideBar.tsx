@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { GetAllCategories } from "../../utility/FakeStoreApi"
 import type { SideBarProps } from "./SideBarProps"
 import { type PartialSideBarFilter } from "./SideBarFilter"
 
 function SideBar({ onChangeFilter }: SideBarProps){
+    console.log("SideBar rendered")
     const priceRange: string[] = [
         "0-50",
         "50-100",
@@ -67,4 +68,4 @@ function SideBar({ onChangeFilter }: SideBarProps){
     )
 }
 
-export default SideBar
+export default memo(SideBar)

@@ -5,7 +5,7 @@ import { addProduct } from "../../redux/CartSlice";
 import type { ProductCart } from "../../dto/ProductCart";
 import SideBar from "../../components/SideBar/SideBar";
 import { type PartialSideBarFilter } from "../../components/SideBar/SideBarFilter";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import useProducts  from "../../hooks/UseProducts";
 
 function Homepage(){
@@ -17,9 +17,10 @@ function Homepage(){
         dispatch(addProduct(prod))
     }
 
-    const handleChangeFilter = (filter: PartialSideBarFilter) => {
-        setSideBarFilter(filter)
-    }
+    const handleChangeFilter = useCallback(
+        (filter: PartialSideBarFilter) => { setSideBarFilter(filter) }, 
+        []
+    )
 
     return (
         <>
