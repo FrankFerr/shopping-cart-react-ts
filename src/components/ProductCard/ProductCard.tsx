@@ -1,4 +1,5 @@
 import type { ProductCart } from "../../dto/ProductCart";
+import { Formatter } from "../../utility/Formatter";
 import RatingStar from "../RatingStar/RatingStar"
 import type { ProductCardProps } from "./ProductCardProps"
 import { BsCartPlusFill } from "react-icons/bs";
@@ -25,7 +26,7 @@ function ProductCard({ product, onAddCart }: ProductCardProps){
                 <hr className="mb-2"/>
                 <p className="text-sm text-[rgba(220,220,220,0.85)] flex items-center gap-2 mb-2">{product.rating.rate} <RatingStar rate={product.rating.rate} star={5} /> ({product.rating.count})</p>
                 <p className="text-sm text-blue-400 mb-2">{product.category}</p>
-                <p className="text-2xl font-medium mb-2">{product.price.toFixed(2).replace('.', ',')}€</p>
+                <p className="text-2xl font-medium mb-2">{Formatter.formatPrice(product.price)}€</p>
                 <button 
                     className="btn-icon my-3 mx-auto text-sm"
                     onClick={addToCart}

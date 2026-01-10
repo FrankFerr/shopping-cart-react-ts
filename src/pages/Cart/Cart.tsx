@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import type { ProductCart } from "../../dto/ProductCart"
 import type { RootState } from "../../redux/Store"
 import ProductCartCard from "../../components/ProductCartCard/ProductCartCard"
+import { Formatter } from "../../utility/Formatter"
 
 function Cart(){
     const productsCart: ProductCart[] = useSelector((state: RootState) => state.cart)
@@ -24,7 +25,7 @@ function Cart(){
                         </div>
                         <div className="w-fit h-52">
                             <p className="text-2xl font-bold">
-                                Totale ({productsCart.reduce((accumulator, current) => accumulator + current.qta, 0)} articoli): {productsCart.reduce((accumulator, current) => accumulator + (current.price * current.qta), 0).toFixed(2).toString().replace('.', ',')}€
+                                Totale ({productsCart.reduce((accumulator, current) => accumulator + current.qta, 0)} articoli): {Formatter.formatPrice(productsCart.reduce((accumulator, current) => accumulator + (current.price * current.qta), 0))}€
                             </p>
                         </div>
                     </>

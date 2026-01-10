@@ -2,6 +2,7 @@ import type { ProductCartCardProps } from "./ProductCardCartProps"
 import QtaChanger from "../QtaChanger/QtaChanger"
 import { deleteProduct, incrementQta, decrementQta } from "../../redux/CartSlice"
 import { useDispatch } from "react-redux"
+import { Formatter } from "../../utility/Formatter"
 
 function ProductCartCard({ productCart }: ProductCartCardProps){
     const dispatch = useDispatch()
@@ -25,7 +26,7 @@ function ProductCartCard({ productCart }: ProductCartCardProps){
                 <h1 className="text-2xl font-medium">{productCart.title}</h1>
                 <p className="text-sm text-blue-400 mt-2 mb-4">{productCart.category}</p>
                 <QtaChanger qta={productCart.qta} onPlus={onAddQta} onSubtract={onSubtractQta} onDelete={onDeleteProd}/>
-                <p className="text-2xl font-medium mt-4">{productCart.price.toFixed(2).toString().replace('.', ',')}€</p>
+                <p className="text-2xl font-medium mt-4">{Formatter.formatPrice(productCart.price)}€</p>
             </div>
         </div>
     )
