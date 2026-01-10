@@ -27,7 +27,7 @@ function Homepage(){
             <Navbar></Navbar>
             <SideBar onChangeFilter={handleChangeFilter}></SideBar>
             <div className="w-3/4 grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-y-5 mt-24 ml-64">
-                { isError ? <h1 className="text-3xl text-white text-center">Error loading products, please try again later</h1> : ""}
+                { isError ? <h1>Error loading products, please try again later</h1> : ""}
                 { products ? products?.map((prod) => <ProductCard key={prod.id} product={prod} onAddCart={onAddCart} />) : ""}
             </div>
         </>
