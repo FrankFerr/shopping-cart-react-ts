@@ -1,10 +1,12 @@
 import { memo } from "react"
 import { NavLink } from "react-router-dom"
+import { useAuthContext } from "../../hooks/UseAuthContext"
 
 const isActiveClass = "h-full font-bold bg-[rgba(54,54,54,0.8)] hover:bg-[rgba(54,54,54,0.8)]"
 const normalClass = "h-full hover:bg-[rgba(54,54,54,0.8)]"
 
 function Navbar(){
+    const authContext = useAuthContext()
 
     return (
         <nav className="w-screen h-16 bg-orange-800 flex items-center fixed top-0">
@@ -19,6 +21,12 @@ function Navbar(){
                     <NavLink to={"/cart"} className={({ isActive }) => isActive ? isActiveClass : normalClass}>
                         <li className="nav-link">Cart</li>
                     </NavLink>
+                    { 
+                        authContext.isAdmin() && 
+                        <NavLink to={"/manage-products"} className={({ isActive }) => isActive ? isActiveClass : normalClass}>
+                            <li className="nav-link">Manage Products</li>
+                        </NavLink>
+                    }
                 </ul>
             </div>
         </nav>
