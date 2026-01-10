@@ -1,5 +1,5 @@
 import { useEffect, useState, memo } from "react"
-import { GetAllCategories } from "../../utility/FakeStoreApi"
+import { GetAllCategories } from "../../api/FakeStoreApi"
 import type { SideBarProps } from "./SideBarProps"
 import { type PartialSideBarFilter } from "./SideBarFilter"
 

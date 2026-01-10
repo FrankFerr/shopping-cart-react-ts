@@ -1,6 +1,6 @@
 import type { PartialSideBarFilter } from "../../components/SideBar/SideBarFilter";
 import type { Product } from "../../dto/Product";
-import { GetAllProducts, GetProductsByCategory } from "../../utility/FakeStoreApi";
+import { GetAllProducts, GetProductsByCategory } from "../../api/FakeStoreApi";
 
 export async function fetchProducts(filter: PartialSideBarFilter): Promise<Product[]>{
 
