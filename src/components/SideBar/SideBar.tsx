@@ -42,7 +42,7 @@ function SideBar({ onChangeFilter }: SideBarProps){
     }
 
     return (
-        <div className="w-64 h-[calc(100vh-4rem)] bg-orange-700 fixed left-0 top-16">
+        <div className="side-bar">
             <form className="ml-5 mt-1" onSubmit={handleSubmit}>
                 {
                     categories.length > 0 ?

@@ -8,4 +8,19 @@
   .nav-link{
     @apply h-full flex items-center px-4
   }
+  .side-bar{
+    @apply w-64 h-[calc(100vh-4rem)] bg-orange-700 fixed left-0 top-16
+  }
+  .normal-nav-link{
+    @apply h-full hover:bg-[rgba(54,54,54,0.8)]
+  }
+  .active-nav-link{
+    @apply h-full font-bold bg-[rgba(54,54,54,0.8)]
+  }
+  .normal-prod-link{
+    @apply block p-4 hover:bg-[rgba(54,54,54,0.8)] border-y-2
+  }
+  .active-prod-link{
+    @apply block p-4 font-bold bg-[rgba(54,54,54,0.8)] border-y-2
+  }
 }
