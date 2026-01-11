@@ -1,7 +1,27 @@
+import { NavLink } from "react-router-dom"
+
 function SideBarProduct(){
     return(
-        <div className="w-64 h-[calc(100vh-4rem)] bg-orange-700 fixed left-0 top-16">
-            
+        <div className="side-bar">
+            <ul>
+                <li>
+                    <NavLink 
+                        to={"/manage-products/insert"} 
+                        className={({ isActive }) => isActive ? "active-prod-link" : "normal-prod-link"}
+                    >
+                        Insert Product
+                    </NavLink>
+                </li>
+
+                <li>
+                    <NavLink 
+                        to={"/manage-products/update"} 
+                        className={({ isActive }) => isActive ? "active-prod-link" : "normal-prod-link"}
+                    >
+                        Update Product
+                    </NavLink>
+                </li>
+            </ul>
         </div>
     )
 }
