@@ -12,3 +12,6 @@ export interface Rating {
   rate: number
   count: number
 }
+
+
+export type InsertProduct = Partial<Omit<Product, "id" | "rating">>
