@@ -3,7 +3,7 @@ import type { InsertProduct } from "../../../dto/Product"
 import { GetAllCategories } from "../../../api/FakeStoreApi"
 import { type Validator, type ResultValidation, validateFiled } from "../../../utility/Validation"
 import Information from "../../../components/Information/Information"
-import { RED } from "../../../components/Information/InformationProps"
+import { colors } from "../../../components/Information/InformationProps"
 
 type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 
@@ -121,7 +121,7 @@ function InsertProduct(){
                     <button className="btn">Insert new product</button>
                 </div>
                 
-                {validationErrors.length > 0 && <Information messages={validationErrors} color={RED}/>}
+                {validationErrors.length > 0 && <Information messages={validationErrors} color={colors.red}/>}
             </form>
 
         </div>
