@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
 import type { InsertProduct } from "../../../dto/Product"
 import { GetAllCategories } from "../../../api/FakeStoreApi"
+import { type Validator, type ResultValidation, validateFiled } from "../../../utility/Validation"
+import Information from "../../../components/Information/Information"
+import { RED } from "../../../components/Information/InformationProps"
 
 type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-type Validator<T> = {
-    [K in keyof T] : {
-        validate: (value: T[K]) => boolean,
-        message: string
-    }
-}
 
 const ProductValidator: Validator<InsertProduct> = {
     title: {
@@ -32,6 +29,7 @@ const ProductValidator: Validator<InsertProduct> = {
 function InsertProduct(){
     const [insertProdData, setInsertProdData] = useState<InsertProduct>({})
     const [categories, setCategories] = useState<string[]>([])
+    const [validationErrors, setValidationErrors] = useState<string[]>([])
     
     useEffect(() => {
         GetAllCategories()
@@ -47,17 +45,26 @@ function InsertProduct(){
         }))
     }
 
-    const handleSubmitData = () => {
+    const handleSubmitData = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
 
+        const resValidate: ResultValidation<InsertProduct> = validateFiled(insertProdData, ProductValidator)
+
+        if(!resValidate.valid){
+            setValidationErrors(Object.values(resValidate.errors))
+            return
+        }else{
+            setValidationErrors([])
+        }
     }
 
     return (
-        <div className="w-full h-full text-center">
+        <div className="w-full h-full flex flex-col items-center">
             <h1>Insert new product</h1>
 
-            <hr className="mt-4 mx-16" />
+            <hr className="mt-4 w-4/5" />
 
-            <form onSubmit={handleSubmitData}>
+            <form onSubmit={(e) => handleSubmitData(e)} className="w-1/3">
                 <div className="mt-5">
                     <input 
                         name="title"
@@ -66,7 +73,7 @@ function InsertProduct(){
                         onChange={(e) => handleChangeData(e)}
                         placeholder="Title..." 
                         className="form-field"
-                        required
+                        // required
                     />
                 </div>
                 <div className="mt-5">
@@ -78,7 +85,7 @@ function InsertProduct(){
                         className="form-field resize-none"
                     />
                 </div>
-                <div className="mt-5 w-1/3 mx-auto grid grid-cols-3">
+                <div className="mt-5 mx-auto grid grid-cols-3">
                     <select
                         name="category"
                         value={insertProdData.category}
@@ -96,7 +103,7 @@ function InsertProduct(){
                         onChange={(e) => handleChangeData(e)}
                         placeholder="Price..." 
                         className="form-field w-4/5"
-                        required
+                        // required
                     />
                 </div>
                 <div className="mt-5">
@@ -107,19 +114,18 @@ function InsertProduct(){
                         onChange={(e) => handleChangeData(e)}
                         placeholder="Image url..." 
                         className="form-field"
-                        required
+                        // required
                     />
                 </div>
-                <div className="w-1/3 mt-5 mx-auto text-left">
+                <div className="mt-5 mx-auto text-left">
                     <button className="btn">Insert new product</button>
                 </div>
+                
+                {validationErrors.length > 0 && <Information messages={validationErrors} color={RED}/>}
             </form>
+
         </div>
     )
-}
-
-function validateFiled(data: InsertProduct){
-
 }
 
 export default InsertProduct
