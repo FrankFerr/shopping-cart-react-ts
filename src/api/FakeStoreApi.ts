@@ -1,4 +1,4 @@
-import type { Product } from "../dto/Product";
+import type { InsertProduct, Product } from "../dto/Product";
 import { Endpoints } from "../environment/Endpoints";
 
 export async function GetAllProducts(): Promise<Product[]> {
@@ -56,5 +56,25 @@ export async function GetAllCategories(): Promise<string[]> {
     catch(err){
         console.log(err)
         throw new Error("Errore durante il caricamento delle categorie")
+    }
+}
+
+export async function InsertNewProduct(prod: InsertProduct){
+    try{
+        const response = await fetch(Endpoints.FakeStore.baseUrl + Endpoints.FakeStore.products, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(prod)
+        })
+
+        if(!response.ok){
+            console.error(response)
+            throw new Error("Errore durante l'inserimento di un nuovo prodotto")
+        }
+    }
+    catch(err){
+        console.error(err)
     }
 }

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import type { InsertProduct } from "../../../dto/Product"
-import { GetAllCategories } from "../../../api/FakeStoreApi"
+import { GetAllCategories, InsertNewProduct } from "../../../api/FakeStoreApi"
 import { type Validator, type ResultValidation, validateFiled } from "../../../utility/Validation"
 import Information from "../../../components/Information/Information"
 import { colors } from "../../../components/Information/InformationProps"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 
@@ -31,6 +32,12 @@ function InsertProduct(){
     const [categories, setCategories] = useState<string[]>([])
     const [validationErrors, setValidationErrors] = useState<string[]>([])
     
+    const queryClient = useQueryClient()
+    const mutation = useMutation({
+        mutationFn: InsertNewProduct,
+        onSuccess: async () => await queryClient.invalidateQueries({ queryKey: ['products'] })
+    })
+    
     useEffect(() => {
         GetAllCategories()
         .then((data: string[]) => setCategories(data))
@@ -56,6 +63,8 @@ function InsertProduct(){
         }else{
             setValidationErrors([])
         }
+
+        mutation.mutate(insertProdData)
     }
 
     return (
@@ -117,11 +126,12 @@ function InsertProduct(){
                         required
                     />
                 </div>
-                <div className="mt-5 mx-auto text-left">
+                <div className="mt-5 mb-5 mx-auto text-left">
                     <button className="btn">Insert new product</button>
                 </div>
                 
                 {validationErrors.length > 0 && <Information messages={validationErrors} color={colors.red}/>}
+                {mutation.isSuccess && <span className="p-3 bg-green-700 text-green-950 rounded-lg font-medium w-full">Product added succesfully</span>}
             </form>
 
         </div>
