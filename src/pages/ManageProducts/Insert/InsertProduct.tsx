@@ -73,7 +73,7 @@ function InsertProduct(){
                         onChange={(e) => handleChangeData(e)}
                         placeholder="Title..." 
                         className="form-field"
-                        // required
+                        required
                     />
                 </div>
                 <div className="mt-5">
@@ -103,7 +103,7 @@ function InsertProduct(){
                         onChange={(e) => handleChangeData(e)}
                         placeholder="Price..." 
                         className="form-field w-4/5"
-                        // required
+                        required
                     />
                 </div>
                 <div className="mt-5">
@@ -114,7 +114,7 @@ function InsertProduct(){
                         onChange={(e) => handleChangeData(e)}
                         placeholder="Image url..." 
                         className="form-field"
-                        // required
+                        required
                     />
                 </div>
                 <div className="mt-5 mx-auto text-left">
